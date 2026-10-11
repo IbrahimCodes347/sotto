@@ -210,7 +210,11 @@ fn invalid_non_ascii_custom_themes_are_skipped() {
     let ls = run(dir.path(), &["theme", "ls"], &[]);
 
     assert!(ls.status.success(), "stderr: {}", stderr(&ls));
-    assert!(!stdout(&ls).contains("probe-#éa"), "stdout: {}", stdout(&ls));
+    assert!(
+        !stdout(&ls).contains("probe-#éa"),
+        "stdout: {}",
+        stdout(&ls)
+    );
     assert!(
         !stdout(&ls).contains("probe-#aé000"),
         "stdout: {}",
